@@ -38,8 +38,7 @@ function Outside(props) {
                 <source src="/mp4lofi/CafeRainyNight.mp4" type="video/mp4"/>
             </video>
             <SidebarMixed onViewMixed = {()=>setMixedView(!mixedView)}/>
-            {/* {mixedView &&  */}
-            <Mixed onCloseMixed = {()=>setMixedView(false)}/>
+            {mixedView &&  <Mixed onCloseMixed = {()=>setMixedView(false)}/>}
            {mode.scence === 'outside' && 
             <>
                  <div className='relative w-[120px] h-[120px] bottom-[-44%] right-[-53%]'>

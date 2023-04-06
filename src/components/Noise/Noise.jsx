@@ -83,7 +83,7 @@ function Noise(props) {
    return ( 
     <>
         <div className='flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <audio ref={audioTrafficRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/city_traffic.mp3' loop type='audio/mp3'/>
+            <audio preload='auto' ref={audioTrafficRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/city_traffic.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>City Traffic </h1>
             <div className='track-full row'>
                 <div className='filler'></div>
@@ -92,8 +92,8 @@ function Noise(props) {
             <input className=''  value={citiTrafficVolume} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-        <audio ref={audioRainRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/rain_city.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>"Keyboard"</h1>
+        <audio preload='auto' ref={audioRainRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/rain_city.mp3' loop type='audio/mp3'/>
+            <h1 className='text-[#bcbab8] pr-6'>Key Board</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
@@ -101,8 +101,8 @@ function Noise(props) {
             <input className='' value={keyBoard} type="range" onChange = {handleKeyBoardVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-        <audio ref={audioKeyBoardRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/keyboard.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'> CityRain</h1>
+        <audio preload='auto' ref={audioKeyBoardRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/keyboard.mp3' loop type='audio/mp3'/>
+            <h1 className='text-[#bcbab8] pr-6'> City Rain</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
@@ -110,7 +110,7 @@ function Noise(props) {
             <input className='' value={cityRain} type="range" onChange = {handleCityRainVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-        <audio ref={audioTalkRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/people_talk_inside.mp3' loop type='audio/mp3'/>
+        <audio preload='auto' ref={audioTalkRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/people_talk_inside.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>Talking</h1>
             <div className="track-full row">
                 <div className="filler"></div>

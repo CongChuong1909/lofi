@@ -8,6 +8,7 @@ function PlayerOption(props) {
     const [currentSongPlay, setCurrentSongPlay] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
     const [viewVolume, setViewVolume] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const audioElement = useRef();
     const dispatch = useDispatch();
     onPlay && audioElement.current.play();
@@ -77,6 +78,15 @@ function PlayerOption(props) {
             temp = 1;
         setCurrentSongPlay(temp)
     }
+
+    const handleToggleFullscreen = () => {
+        if (!isFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+        setIsFullscreen(!isFullscreen);
+      };
     return (
         <>
            <audio src={mp3PlayerSong} preload="auto"  type="audio/mpeg" ref ={audioElement}/>
@@ -100,8 +110,8 @@ function PlayerOption(props) {
             <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px]">
                 <i onClick = {handleMuted} className={`text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-volume-slash ${isMuted ?'border-2 border-[#f3a952] rounded-lg': ''}`}></i>
             </div>
-            <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px]">
-                <i className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-regular fa-expand"></i>
+            <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px] "  onClick={handleToggleFullscreen}>
+            {isFullscreen ? <i class="text-[#fff] cursor-pointer px-3 py-2 fa-regular fa-arrows-minimize"></i>  : <i className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-regular fa-expand"></i>}
             </div>
         </>
     );

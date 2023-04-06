@@ -9,6 +9,7 @@ function Header(props) {
     const {dayNight} = mode
     const dispatch = useDispatch();
     const [dayNightBg, setDayNightBg] = useState(dayNight)
+   
     const handleChangeMode = ()=>{
 
         if(dayNight === 'day')
