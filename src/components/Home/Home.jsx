@@ -13,7 +13,7 @@ function Outside(props) {
     
     return (
         <div className='w-full h-[100vh] bg-[#000]'>
-            {/* <video autoPlay loop muted  className={`${activeMode === 'status-outside-day-clear' ? 'bg-in' : 'bg-out'}`}>
+            <video autoPlay loop muted  className={`${activeMode === 'status-outside-day-clear' ? 'bg-in' : 'bg-out'}`}>
                 <source src="/mp4lofi/ExteriorDay.mp4" type="video/mp4"/>
             </video>
             <video autoPlay loop muted onLoadedData={()=>setVideoIsLoaded(true)} className={`${activeMode === 'status-outside-night-clear' ? 'bg-in' : 'bg-out'}`}>
@@ -36,7 +36,7 @@ function Outside(props) {
             </video>
             <video autoPlay loop muted onLoadedData={()=>setVideoIsLoaded(true)} className={`${activeMode === 'status-inside-night-ran' ? 'bg-in' : 'bg-out'}`}>
                 <source src="/mp4lofi/CafeRainyNight.mp4" type="video/mp4"/>
-            </video> */}
+            </video>
             <SidebarMixed onViewMixed = {()=>setMixedView(!mixedView)}/>
             {/* {mixedView &&  */}
             <Mixed onCloseMixed = {()=>setMixedView(false)}/>

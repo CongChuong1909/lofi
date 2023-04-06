@@ -1,9 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { changeNoise } from "../../redux/Slices/NoiseSlices";
-import ReactAudioPlayer from 'react-audio-player';
-// import NoiseItems from './NoiseItems/NoiseItems';
-// import ReactAudioPlayer from 'react-audio-player';
+
 function Noise(props) {
 
     const noiseMode = useSelector((state) => state.noise);
@@ -14,69 +12,87 @@ function Noise(props) {
     const [peopleTalkVolume, setPeopleTalkVolume] = useState(peopleTalk);
 
     const dispatch = useDispatch();
+    const audioTrafficRef = useRef();
+    const audioRainRef = useRef();
+    const audioKeyBoardRef = useRef();
+    const audioTalkRef = useRef();
+    useEffect(()=>{
+        if(audioTrafficRef.current)
+        {
+            audioTrafficRef.current.volume =0;
+        }
+        if(audioRainRef.current)
+        {
+            audioRainRef.current.volume =0;
+        }
+        if(audioKeyBoardRef.current)
+        {
+            audioKeyBoardRef.current.volume =0;
+        }
 
+        if(audioTalkRef.current)
+        {
+            audioTalkRef.current.volume =0;
+        }
+    },[])
     const handleCitiTrafficVolume = (e)=>{
-        setCitiTrafficVolume(e.target.value);
+        const newCitiTrafficVolume = e.target.value;
+        setCitiTrafficVolume(newCitiTrafficVolume);
         const updateNoise = {
             ...noiseMode,
-            cityTraffic: citiTrafficVolume,
+            cityTraffic: newCitiTrafficVolume,
         }
         dispatch(changeNoise(updateNoise))
+        console.log(newCitiTrafficVolume);
+        audioTrafficRef.current.volume = newCitiTrafficVolume;
     }
     const handleCityRainVolume = (e)=>{
-        setCityRainVolume(e.target.value);
+        const newCityRainVolume = e.target.value;
+        setCityRainVolume(newCityRainVolume);
         const updateNoise = {
             ...noiseMode,
-            cityRain: cityRainVolume,
+            cityRain: newCityRainVolume,
         }
         dispatch(changeNoise(updateNoise))
+        console.log(newCityRainVolume);
+        audioRainRef.current.volume = newCityRainVolume;
     }
     const handleKeyBoardVolume = (e)=>{
-        setKeyBoardVolume(e.target.value);
+        const newKeyboardNoiseVolume = e.target.value;
+        setKeyBoardVolume(newKeyboardNoiseVolume);
         const updateNoise = {
             ...noiseMode,
-            keyBoard: keyBoardVolume,
+            keyBoard: newKeyboardNoiseVolume,
         }
         dispatch(changeNoise(updateNoise))
+        console.log(newKeyboardNoiseVolume);
+        audioKeyBoardRef.current.volume = newKeyboardNoiseVolume;
     }
     const handlePeopleTalkVolume = (e)=>{
-        setPeopleTalkVolume(e.target.value);
+        const newPeopleTalkingNoiseVolume = e.target.value;
+        setPeopleTalkVolume(newPeopleTalkingNoiseVolume);
         const updateNoise = {
             ...noiseMode,
-            peopleTalk: peopleTalkVolume,
+            peopleTalk: newPeopleTalkingNoiseVolume,
         }
         dispatch(changeNoise(updateNoise))
+        console.log(newPeopleTalkingNoiseVolume);
+        audioTalkRef.current.volume = newPeopleTalkingNoiseVolume;
     }
-
-    console.log(cityTraffic);
 
    return ( 
     <>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <ReactAudioPlayer
-                preload='auto'
-                autoPlay
-                src = "/mp3/city_traffic.mp3"
-                loop
-                volume={Number(cityTraffic)}
-            />
-
-            {/* <audio src = "/mp3/city_traffic.mp3" preload='auto' autoPlay volume="0" loop type="audio/mp3"/> */}
+        <div className='flex justify-between w-full level-input mx-3 pb-3 px-8'>
+            <audio ref={audioTrafficRef}  autoPlay src='/mp3/city_traffic.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>City Traffic </h1>
-            <div className="track-full row">
-                <div className="filler"></div>
-                <div className="track" ></div>
+            <div className='track-full row'>
+                <div className='filler'></div>
+                <div className='track'></div>
             </div>
-            <input className='' value={cityTraffic} type="range" onChange = {handleCitiTrafficVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className=''  value={citiTrafficVolume} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
         </div>
-        {/* <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <ReactAudioPlayer 
-                preload='auto'
-                autoPlay
-                src = "/mp3/keyboard.mp3"
-                loop
-                volume={Number(keyBoard)}
-            />
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <audio ref={audioRainRef}  autoPlay src='/mp3/rain_city.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>"Keyboard"</h1>
             <div className="track-full row">
                 <div className="filler"></div>
@@ -85,13 +101,7 @@ function Noise(props) {
             <input className='' value={keyBoard} type="range" onChange = {handleKeyBoardVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <ReactAudioPlayer 
-                preload='auto'
-                autoPlay
-                src = "/mp3/rain_city.mp3"
-                loop
-                volume={Number(cityRain)}
-            />
+        <audio ref={audioKeyBoardRef}  autoPlay src='/mp3/keyboard.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'> CityRain</h1>
             <div className="track-full row">
                 <div className="filler"></div>
@@ -100,20 +110,14 @@ function Noise(props) {
             <input className='' value={cityRain} type="range" onChange = {handleCityRainVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <ReactAudioPlayer 
-                preload='auto'
-                autoPlay
-                src = "/mp3/people_talk_inside.mp3"
-                loop
-                volume={Number(peopleTalk)}
-            />
+        <audio ref={audioTalkRef}  autoPlay src='/mp3/people_talk_inside.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>Talking</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
             <input className='' value={peopleTalk} type="range" onChange = {handlePeopleTalkVolume} name="volume" step="0.1" min="0" max="1"  />
-        </div> */}
+        </div>
         
         
     </>

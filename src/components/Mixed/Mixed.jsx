@@ -23,7 +23,7 @@ function Mixed(props) {
     
 
     return (
-        <div className='absolute z-10 w-80 h-[420px] top-[20%] left-[60%] backdrop-filter scroll-div'>
+        <div className='absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div'>
             <div className='relative right-0 flex w-full justify-end px-[12px] '><p onClick={props.onCloseMixed } className='text-[#fff] cursor-pointer pb-1'>___</p></div>
             <div className='grid grid-cols-5 gap-2 p-2 '>
                 <div className="row-span-2 col-span-3 bg-[rgba(1,1,1,0.7)] rounded-[8px]">
@@ -64,7 +64,7 @@ function Mixed(props) {
 
                 <div className='col-span-5 flex flex-col justify-center items-center bg-[rgba(1,1,1,0.7)] rounded-[8px]'>
                     <h3 className='text-[#bcbab8] pt-3 font-semibold mb-4'>SOUNDS FROM <span className='text-[#f3a952]'>LOFI CAFE</span></h3>
-                    <NoiseItems />
+                    <Noise />
                     
                 </div>
             </div>
