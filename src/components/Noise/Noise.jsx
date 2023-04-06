@@ -83,7 +83,7 @@ function Noise(props) {
    return ( 
     <>
         <div className='flex justify-between w-full level-input mx-3 pb-3 px-8'>
-            <audio ref={audioTrafficRef}  autoPlay src='/mp3/city_traffic.mp3' loop type='audio/mp3'/>
+            <audio ref={audioTrafficRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/tracks/chill/chill_8.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>City Traffic </h1>
             <div className='track-full row'>
                 <div className='filler'></div>
