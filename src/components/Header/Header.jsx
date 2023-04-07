@@ -19,7 +19,6 @@ function Header(props) {
                 ...mode,
                 dayNight: 'night',
             }
-            console.log(updateMode);
             dispatch(changeMode(updateMode))
         }
         else{
@@ -28,7 +27,6 @@ function Header(props) {
                 ...mode,
                 dayNight: 'day',
             }
-            console.log(updateMode);
             dispatch(changeMode(updateMode))
             
         }

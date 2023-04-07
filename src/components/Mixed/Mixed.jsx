@@ -9,6 +9,8 @@ function Mixed(props) {
     const dispatch = useDispatch();
     const [kindMusicPlay, setKindMusicPlay] = useState(kindMusic);
     const [volumePlay, setVolumePlay] = useState(volume)
+    const [showSpotify, setShowSpotify] = useState(false);
+    console.log(showSpotify);
     const arrKindMusic =  ['sleepy', 'jazzy', 'chill'];
     const handleClickChangeMusic = (kind)=>{
             setKindMusicPlay(kind);
@@ -22,7 +24,6 @@ function Mixed(props) {
 
     const handleChangeVolume = (e) =>{
         const newValueChange = e.target.value;
-        console.log(newValueChange);
         setVolumePlay(newValueChange)
         const updateMusic = {
             ...musicMode,
@@ -34,7 +35,7 @@ function Mixed(props) {
     
 
     return (
-        <div className={`${props.classes} absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div`}>
+        <div className={`${props.classes} absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div noise`}>
             <div className='relative right-0 flex w-full justify-end px-[12px] '><p onClick={props.onCloseMixed } className='text-[#fff] cursor-pointer pb-1'>___</p></div>
             <div className='grid grid-cols-5 gap-2 p-2 '>
                 <div className="row-span-2 col-span-3 bg-[rgba(1,1,1,0.7)] rounded-[8px]">
@@ -56,8 +57,8 @@ function Mixed(props) {
                         })}
                     </div>
                 </div>
-                <div className="bg-[rgba(1,1,1,0.7)] col-span-2 rounded-[8px] flex justify-center items-center"><img className='w-6 h-6' src="https://app.lofi.co/icons/lofi-logo.png" alt="" /><h3 className='text-[#fff] text-[16px] ml-3'>lofi.co</h3></div>
-                <div className="bg-[rgba(1,1,1,0.7)] col-span-2 rounded-[8px] flex justify-center items-center"><img className='w-6 h-6' src="https://app.lofi.co/icons/controls/spotify-player.svg" alt="" /><h3 className='text-[#fff] text-[16px] ml-3'>Spotify</h3></div>
+                <div className="bg-[rgba(1,1,1,0.7)] col-span-2 rounded-[8px] flex justify-center items-center cursor-pointer border border-[#f3a952]"><img className='w-6 h-6' src="https://app.lofi.co/icons/lofi-logo.png" alt="" /><h3 className='text-[#fff] text-[16px] ml-3'>lofi.co</h3></div>
+                <div onClick={()=> setShowSpotify(!showSpotify)} className="bg-[rgba(1,1,1,0.7)] col-span-2 rounded-[8px] flex justify-center items-center cursor-pointer"><img className='w-6 h-6' src="https://app.lofi.co/icons/controls/spotify-player.svg" alt="" /><h3 className='text-[#fff] text-[16px] ml-3'>Spotify</h3></div>
                 <div className='col-span-5 flex flex-col justify-center items-center bg-[rgba(1,1,1,0.7)] rounded-[8px]'>
                     <h3 className='text-[#bcbab8] pt-3'>MUSIC VOLUME</h3>
                     <div className='flex justify-center items-center w-full py-2'> 
@@ -72,9 +73,14 @@ function Mixed(props) {
                             <i className="fa-solid fa-volume-high text-[#bcbab8]"></i>
                         </div>    
                 </div>
+                {showSpotify && <div className=' col-span-5 text-center bg-[rgba(1,1,1,0.7)] relative rounded-[8px] w-full'>
+                    <span onClick={()=>setShowSpotify(false)} className='absolute right-0 py-2 px-4 cursor-pointer text-[#ccc]'>x</span>
+                    <h3 className='text-[#bcbab8] pt-3 font-semibold mb-4'>SOUNDS FROM <span className='text-[#f3a952]'>SPOTIFY</span></h3>
+                    <h3 className='text-[#bcbab8] font-thin mb-4'>... Update later ...</h3>
+                </div>}
 
-                <div className='col-span-5 flex flex-col justify-center items-center bg-[rgba(1,1,1,0.7)] rounded-[8px]'>
-                    <h3 className='text-[#bcbab8] pt-3 font-semibold mb-4'>SOUNDS FROM <span className='text-[#f3a952]'>LOFI CAFE</span></h3>
+                <div className='noise col-span-5 flex flex-col justify-center items-center bg-[rgba(1,1,1,0.7)] rounded-[8px] overflow-scroll scrollbar-thin scrollbar-thumb-gray-500 h-[176px]'>
+                    <h3 className='text-[#bcbab8] pt-40 font-semibold mb-4'>SOUNDS FROM <span className='text-[#f3a952]'>LOFI CAFE</span></h3>
                     <Noise />
                     
                 </div>

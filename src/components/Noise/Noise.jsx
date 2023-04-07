@@ -7,28 +7,33 @@ function Noise(props) {
 
     const noiseMode = useSelector((state) => state.noise);
     const mode = useSelector((state) =>state.mode)
-    const {cityTraffic, cityRain, keyBoard, peopleTalk} = noiseMode;
+    const {cityTraffic, cityRain, keyBoard, peopleTalk, fire, wave, wind} = noiseMode;
 
-
-    console.log(noiseMode);
     const {dayNight,scence,weather} = mode;
     const dispatch = useDispatch();
     const audioTrafficRef = useRef();
     const audioRainRef = useRef();
     const audioKeyBoardRef = useRef();
     const audioTalkRef = useRef();
+    const audioFireRef = useRef();
+    const audioWaveRef = useRef();
+    const audioWindRef = useRef();
     useEffect(()=>{
         if(audioTrafficRef.current)
             audioTrafficRef.current.volume =cityTraffic;
         if(audioRainRef.current)
-        {
             audioRainRef.current.volume = cityRain
-        }
         if(audioKeyBoardRef.current)
             audioKeyBoardRef.current.volume =keyBoard;
         if(audioTalkRef.current)
             audioTalkRef.current.volume =peopleTalk;
-    },[cityTraffic, cityRain, keyBoard, peopleTalk])
+        if(audioFireRef.current)
+            audioFireRef.current.volume =fire;
+        if(audioWaveRef.current)
+            audioWaveRef.current.volume =wave;
+        if(audioWindRef.current)
+            audioWindRef.current.volume =wind;
+    },[cityTraffic, cityRain, keyBoard, peopleTalk, fire, wave, wind])
     const handleCitiTrafficVolume = (e)=>{
         const newCitiTrafficVolume = e.target.value;
         const updateNoise = {
@@ -82,9 +87,37 @@ function Noise(props) {
         audioTalkRef.current.volume = newPeopleTalkingNoiseVolume;
     }
 
+    const handleFireVolume = (e)=>{
+        const newFireVolume = e.target.value;
+        const updateNoise = {
+            ...noiseMode,
+            fire: newFireVolume,
+        }
+        dispatch(changeNoise(updateNoise))
+        audioFireRef.current.volume = newFireVolume;
+    }
+    const handleWaveVolume = (e)=>{
+        const newWaveVolume = e.target.value;
+        const updateNoise = {
+            ...noiseMode,
+            wave: newWaveVolume,
+        }
+        dispatch(changeNoise(updateNoise))
+        audioWaveRef.current.volume = newWaveVolume;
+    }
+    const handleWindVolume = (e)=>{
+        const newWindVolume = e.target.value;
+        const updateNoise = {
+            ...noiseMode,
+            wind: newWindVolume,
+        }
+        dispatch(changeNoise(updateNoise))
+        audioWindRef.current.volume = newWindVolume;
+    }
+
    return ( 
     <>
-        <div className='flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className='flex justify-between w-full level-input mx-3 pb-3 px-8 '>
             <audio preload='auto' ref={audioTrafficRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/city_traffic.mp3' loop type='audio/mp3'/>
             <h1 className='text-[#bcbab8] pr-6'>City Traffic </h1>
             <div className='track-full row'>
@@ -120,6 +153,35 @@ function Noise(props) {
             </div>
             <input className='' value={peopleTalk} type="range" onChange = {handlePeopleTalkVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <audio preload='auto' ref={audioFireRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/fireplace.mp3' loop type='audio/mp3'/>
+            <h1 className='text-[#bcbab8] pr-6'>Fire</h1>
+            <div className="track-full row">
+                <div className="filler"></div>
+                <div className="track" ></div>
+            </div>
+            <input className='' value={fire} type="range" onChange = {handleFireVolume} name="volume" step="0.1" min="0" max="1"  />
+        </div>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <audio preload='auto' ref={audioWaveRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/waves.mp3' loop type='audio/mp3'/>
+            <h1 className='text-[#bcbab8] pr-6'>Wave</h1>
+            <div className="track-full row">
+                <div className="filler"></div>
+                <div className="track" ></div>
+            </div>
+            <input className='' value={wave} type="range" onChange = {handleWaveVolume} name="volume" step="0.1" min="0" max="1"  />
+        </div>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <audio preload='auto' ref={audioWindRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/wind.mp3' loop type='audio/mp3'/>
+            <h1 className='text-[#bcbab8] pr-6'>Wind</h1>
+            <div className="track-full row">
+                <div className="filler"></div>
+                <div className="track" ></div>
+            </div>
+            <input className='' value={wind} type="range" onChange = {handleWindVolume} name="volume" step="0.1" min="0" max="1"  />
+        </div>
+        
+        
         
         
     </>

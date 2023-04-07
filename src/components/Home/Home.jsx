@@ -19,7 +19,6 @@ function Outside(props) {
         classes = ' invisible opacity-[0]'
     }
     
-console.log(classes);
 
     return (
         <div className='w-full h-[100vh] bg-[#000] '>

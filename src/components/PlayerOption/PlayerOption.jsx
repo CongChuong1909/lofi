@@ -47,7 +47,6 @@ function PlayerOption(props) {
 
     const handleChangeVolume = (e) =>{
         setVolumePlay(e.target.value);
-        console.log(e.target.value);
         const updateMusic = {
             ...musicMode,
             volume: volumePlay,
@@ -73,7 +72,6 @@ function PlayerOption(props) {
     }
 
     const mp3PlayerSong = `https://lofico.nyc3.cdn.digitaloceanspaces.com/tracks/${kindMusic}/${kindMusic}_${currentSongPlay}.mp3`
-    console.log(mp3PlayerSong);
 
     const handleBack = ()=>{
         let temp = currentSongPlay;
