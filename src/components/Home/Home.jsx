@@ -10,9 +10,19 @@ function Outside(props) {
     const [mixedView, setMixedView] = useState(false);
     const [isVideoLoaded, setVideoIsLoaded] = useState(false);
 
+    let classes = '';
+    if(mixedView)
+    {
+        classes = ' visible opacity-[1]'
+    }
+    else{
+        classes = ' invisible opacity-[0]'
+    }
     
+console.log(classes);
+
     return (
-        <div className='w-full h-[100vh] bg-[#000]'>
+        <div className='w-full h-[100vh] bg-[#000] '>
             <video autoPlay loop muted  className={`${activeMode === 'status-outside-day-clear' ? 'bg-in' : 'bg-out'}`}>
                 <source src="/mp4lofi/ExteriorDay.mp4" type="video/mp4"/>
             </video>
@@ -38,7 +48,7 @@ function Outside(props) {
                 <source src="/mp4lofi/CafeRainyNight.mp4" type="video/mp4"/>
             </video>
             <SidebarMixed onViewMixed = {()=>setMixedView(!mixedView)}/>
-            {mixedView &&  <Mixed onCloseMixed = {()=>setMixedView(false)}/>}
+            <Mixed classes = {classes} onCloseMixed = {()=>setMixedView(false)}/>
            {mode.scence === 'outside' && 
             <>
                  <div className='relative w-[120px] h-[120px] bottom-[-44%] right-[-53%]'>

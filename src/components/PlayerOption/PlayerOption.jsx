@@ -5,18 +5,26 @@ function PlayerOption(props) {
     const musicMode = useSelector((state) => state.music);
     const {onPlay, kindMusic, volume} = musicMode;  
     const [volumePlay, setVolumePlay] = useState(volume);
-    const [currentSongPlay, setCurrentSongPlay] = useState(1);
+    const [currentSongPlay, setCurrentSongPlay] = useState(Math.floor(Math.random() * 19) + 1);
     const [isMuted, setIsMuted] = useState(false);
     const [viewVolume, setViewVolume] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const audioElement = useRef();
     const dispatch = useDispatch();
-    onPlay && audioElement.current.play();
+    if(audioElement.current)
+    {
+        onPlay && audioElement.current.play();
+    }
+   
 
     const handlePlayingMusic = () =>{
+     
         if(onPlay === false)
             {
-                audioElement.current.play();
+                if(audioElement.current)
+                {
+                    audioElement.current.play();
+                }
                 const updateMusic = {
                     ...musicMode,
                     onPlay: true,
@@ -24,7 +32,10 @@ function PlayerOption(props) {
                 dispatch(changeMusic(updateMusic))
             }
             else{
-                audioElement.current.pause();
+                if(audioElement.current)
+                {
+                    audioElement.current.pause();
+                }
                 const updateMusic = {
                     ...musicMode,
                     onPlay: false,
@@ -87,9 +98,10 @@ function PlayerOption(props) {
         }
         setIsFullscreen(!isFullscreen);
       };
+
     return (
         <>
-           <audio src={mp3PlayerSong} preload="auto"  type="audio/mpeg" ref ={audioElement}/>
+           <audio src={mp3PlayerSong} preload="auto"  type="audio/mpeg" ref ={audioElement} onEnded={handleForward}/>
             <div  onMouseLeave={()=> setViewVolume(false)}  className="relative">
                 <div  className="bg-[rgba(1,1,1,0.7)] rounded-[10px] relative">
                     <i onClick={handleBack} className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-backward-fast"></i>
@@ -111,7 +123,7 @@ function PlayerOption(props) {
                 <i onClick = {handleMuted} className={`text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-volume-slash ${isMuted ?'border-2 border-[#f3a952] rounded-lg': ''}`}></i>
             </div>
             <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px] "  onClick={handleToggleFullscreen}>
-            {isFullscreen ? <i class="text-[#fff] cursor-pointer px-3 py-2 fa-regular fa-arrows-minimize"></i>  : <i className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-regular fa-expand"></i>}
+            {isFullscreen ? <i className="text-[#fff] cursor-pointer px-3 py-2 fa-regular fa-arrows-minimize"></i>  : <i className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-regular fa-expand"></i>}
             </div>
         </>
     );

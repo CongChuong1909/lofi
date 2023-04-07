@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { changeNoise } from "../../redux/Slices/NoiseSlices";
+import { changeMode } from '../../redux/Slices/ModeSlices';
 
 function Noise(props) {
 
     const noiseMode = useSelector((state) => state.noise);
+    const mode = useSelector((state) =>state.mode)
     const {cityTraffic, cityRain, keyBoard, peopleTalk} = noiseMode;
-    const [citiTrafficVolume, setCitiTrafficVolume] = useState(cityTraffic);
-    const [cityRainVolume, setCityRainVolume] = useState(cityRain);
-    const [keyBoardVolume, setKeyBoardVolume] = useState(keyBoard);
-    const [peopleTalkVolume, setPeopleTalkVolume] = useState(peopleTalk);
 
+
+    console.log(noiseMode);
+    const {dayNight,scence,weather} = mode;
     const dispatch = useDispatch();
     const audioTrafficRef = useRef();
     const audioRainRef = useRef();
@@ -18,65 +19,66 @@ function Noise(props) {
     const audioTalkRef = useRef();
     useEffect(()=>{
         if(audioTrafficRef.current)
-        {
-            audioTrafficRef.current.volume =0;
-        }
+            audioTrafficRef.current.volume =cityTraffic;
         if(audioRainRef.current)
         {
-            audioRainRef.current.volume =0;
+            audioRainRef.current.volume = cityRain
         }
         if(audioKeyBoardRef.current)
-        {
-            audioKeyBoardRef.current.volume =0;
-        }
-
+            audioKeyBoardRef.current.volume =keyBoard;
         if(audioTalkRef.current)
-        {
-            audioTalkRef.current.volume =0;
-        }
-    },[])
+            audioTalkRef.current.volume =peopleTalk;
+    },[cityTraffic, cityRain, keyBoard, peopleTalk])
     const handleCitiTrafficVolume = (e)=>{
         const newCitiTrafficVolume = e.target.value;
-        setCitiTrafficVolume(newCitiTrafficVolume);
         const updateNoise = {
             ...noiseMode,
             cityTraffic: newCitiTrafficVolume,
         }
         dispatch(changeNoise(updateNoise))
-        console.log(newCitiTrafficVolume);
         audioTrafficRef.current.volume = newCitiTrafficVolume;
     }
     const handleCityRainVolume = (e)=>{
         const newCityRainVolume = e.target.value;
-        setCityRainVolume(newCityRainVolume);
         const updateNoise = {
             ...noiseMode,
             cityRain: newCityRainVolume,
         }
-        dispatch(changeNoise(updateNoise))
-        console.log(newCityRainVolume);
+        if(newCityRainVolume > 0)
+        {
+            const updateMode = {
+                ...mode,
+                weather: 'ran'
+            }
+            dispatch(changeMode(updateMode));
+        }
+        else{
+            const updateMode = {
+                ...mode,
+                weather: 'clear'
+            }
+            dispatch(changeMode(updateMode));
+        }
+        dispatch(changeNoise(updateNoise));
+        
         audioRainRef.current.volume = newCityRainVolume;
     }
     const handleKeyBoardVolume = (e)=>{
         const newKeyboardNoiseVolume = e.target.value;
-        setKeyBoardVolume(newKeyboardNoiseVolume);
         const updateNoise = {
             ...noiseMode,
             keyBoard: newKeyboardNoiseVolume,
         }
         dispatch(changeNoise(updateNoise))
-        console.log(newKeyboardNoiseVolume);
         audioKeyBoardRef.current.volume = newKeyboardNoiseVolume;
     }
     const handlePeopleTalkVolume = (e)=>{
         const newPeopleTalkingNoiseVolume = e.target.value;
-        setPeopleTalkVolume(newPeopleTalkingNoiseVolume);
         const updateNoise = {
             ...noiseMode,
             peopleTalk: newPeopleTalkingNoiseVolume,
         }
         dispatch(changeNoise(updateNoise))
-        console.log(newPeopleTalkingNoiseVolume);
         audioTalkRef.current.volume = newPeopleTalkingNoiseVolume;
     }
 
@@ -89,7 +91,7 @@ function Noise(props) {
                 <div className='filler'></div>
                 <div className='track'></div>
             </div>
-            <input className=''  value={citiTrafficVolume} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
+            <input className=''  value={cityTraffic} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
         </div>
         <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
         <audio preload='auto' ref={audioRainRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/rain_city.mp3' loop type='audio/mp3'/>

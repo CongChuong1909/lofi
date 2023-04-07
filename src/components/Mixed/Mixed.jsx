@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { changeMusic } from "../../redux/Slices/MusicSlices";
 import Noise from '../Noise/Noise';
-import NoiseItems from '../Noise/NoiseItems/NoiseItems';
 function Mixed(props) {
 
     const musicMode = useSelector((state) => state.music);
     const {onPlay, kindMusic, volume} = musicMode;
     const dispatch = useDispatch();
     const [kindMusicPlay, setKindMusicPlay] = useState(kindMusic);
+    const [volumePlay, setVolumePlay] = useState(volume)
     const arrKindMusic =  ['sleepy', 'jazzy', 'chill'];
     const handleClickChangeMusic = (kind)=>{
             setKindMusicPlay(kind);
@@ -20,10 +20,21 @@ function Mixed(props) {
             dispatch(changeMusic(updateMusic))
     }
 
+    const handleChangeVolume = (e) =>{
+        const newValueChange = e.target.value;
+        console.log(newValueChange);
+        setVolumePlay(newValueChange)
+        const updateMusic = {
+            ...musicMode,
+            volume: newValueChange,
+        }
+        dispatch(changeMusic(updateMusic))
+    }
+
     
 
     return (
-        <div className='absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div'>
+        <div className={`${props.classes} absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div`}>
             <div className='relative right-0 flex w-full justify-end px-[12px] '><p onClick={props.onCloseMixed } className='text-[#fff] cursor-pointer pb-1'>___</p></div>
             <div className='grid grid-cols-5 gap-2 p-2 '>
                 <div className="row-span-2 col-span-3 bg-[rgba(1,1,1,0.7)] rounded-[8px]">
@@ -56,7 +67,7 @@ function Mixed(props) {
                                     <div className="filler"></div>
                                     <div className="track" ></div>
                                 </div>
-                                <input className='' type="range" name="volume" step="0.01" min="0" max="1"  />
+                                <input className='' value={volumePlay} type="range" name="volume" onChange={handleChangeVolume} step="0.1" min="0" max="1"  />
                             </div>
                             <i className="fa-solid fa-volume-high text-[#bcbab8]"></i>
                         </div>    
