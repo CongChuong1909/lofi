@@ -4,12 +4,16 @@ import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { changeMode } from '../../redux/Slices/ModeSlices';
 import PlayerOption from '../PlayerOption/PlayerOption';
+import { CSSTransition } from "react-transition-group";
 function Header(props) {
     const mode = useSelector((state) => state.mode);
     const {dayNight} = mode
     const dispatch = useDispatch();
     const [dayNightBg, setDayNightBg] = useState(dayNight)
-   
+    const hiddenMode = useSelector((state) => state.hidden);
+    const {hidden, time, isHidden} = hiddenMode;
+
+    console.log(hiddenMode);
     const handleChangeMode = ()=>{
 
         if(dayNight === 'day')
@@ -32,7 +36,13 @@ function Header(props) {
         }
     }
     return (
-        <div className='flex justify-between items-center bg-[rgba(92,92,92,0)] w-full fixed z-[2]'>
+        <CSSTransition
+        in={hidden}
+        timeout={500}
+        classNames="box"
+        unmountOnExit
+      >
+        <div className={` flex justify-between items-center bg-[rgba(92,92,92,0)] w-full fixed z-[2]  ${hidden ? 'fadeDown': 'fadeUp'}`}>
                 <img className='w-40 mx-10 h-auto' src="/image/logo.gif" alt="" />
                 <div className='flex justify-between items-center w-[30%] h-[80px] px-10'>
                     <Toggle onToggleModeBg = {handleChangeMode}/>
@@ -42,6 +52,7 @@ function Header(props) {
                     </div>
                 </div>
         </div>
+        </CSSTransition>
     );
 }
 

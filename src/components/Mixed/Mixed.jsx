@@ -10,7 +10,6 @@ function Mixed(props) {
     const [kindMusicPlay, setKindMusicPlay] = useState(kindMusic);
     const [volumePlay, setVolumePlay] = useState(volume)
     const [showSpotify, setShowSpotify] = useState(false);
-    console.log(showSpotify);
     const arrKindMusic =  ['sleepy', 'jazzy', 'chill'];
     const handleClickChangeMusic = (kind)=>{
             setKindMusicPlay(kind);
@@ -35,7 +34,7 @@ function Mixed(props) {
     
 
     return (
-        <div className={`${props.classes} absolute z-10 w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div noise`}>
+        <div className={`${props.mixedView ? 'opacity-1 z-10' : 'opacity-0 z-0'} absolute w-80 h-[430px] top-[20%] left-[60%] backdrop-filter scroll-div noise transition_opacity`}>
             <div className='relative right-0 flex w-full justify-end px-[12px] '><p onClick={props.onCloseMixed } className='text-[#fff] cursor-pointer pb-1'>___</p></div>
             <div className='grid grid-cols-5 gap-2 p-2 '>
                 <div className="row-span-2 col-span-3 bg-[rgba(1,1,1,0.7)] rounded-[8px]">

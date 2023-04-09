@@ -53,6 +53,7 @@
     opacity: 0;
     position: absolute;
     top: 0;
+    display: none;
     transition: opacity 1s;
     transition-property: opacity;
     background-color: transparent;
@@ -108,6 +109,10 @@
     opacity: 1;
     visibility: visible;
     transition: opacity 1s;
+  }
+
+  .transition_opacity{
+    transition: opacity 0.5s;
   }
   
   
@@ -184,4 +189,49 @@
     background-color: #d8860b;
     /* transition: all 0.5s ease-in-out;     */
 }
+.scenes_layout{
+    transform: translateX(200%);
+}
+.scenes{
+    animation: fadeRtoL 0.5s ease-in-out;
+}
 
+@keyframes fadeRtoL {
+    from {
+      transform:translateX(200%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .fadeDown{
+    animation: fadeOut 0.5s ease-in-out;
+  }
+  .fadeUp{
+    animation: fadeUp 0.5s ease-in-out;
+  }
+
+  @keyframes fadeUp {
+    from {
+        transform:translateY(0);
+        opacity: 1;
+    }
+    to{
+        transform:translateY(-100%);
+        opacity: 0;
+    }
+  }
+
+  @keyframes fadeDown {
+    from {
+        transform:translateY(-100%);
+        opacity: 0;
+    }
+    to{
+        transform:translateY(0%);
+        opacity: 1;
+    }
+  }
