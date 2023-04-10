@@ -101,7 +101,7 @@ function PlayerOption(props) {
         <>
            <audio src={mp3PlayerSong} preload="auto"  type="audio/mpeg" ref ={audioElement} onEnded={handleForward}/>
             <div  onMouseLeave={()=> setViewVolume(false)}  className="relative">
-                <div  className="bg-[rgba(1,1,1,0.7)] rounded-[10px] relative">
+                <div  className="bg-[rgba(1,1,1,0.7)] flex rounded-[10px] relative">
                     <i onClick={handleBack} className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-backward-fast"></i>
                     {!onPlay && <i onClick={handlePlayingMusic} className="text-[#fff] cursor-pointer px-3 py-2 w-[32px] fa-duotone fa-play"></i>}
                     {onPlay && <i onClick={handlePlayingMusic} className="text-[#fff] cursor-pointer px-3 py-2 w-[32px] fa-duotone fa-pause"></i>}

@@ -3,7 +3,7 @@ export const HiddenSlice = createSlice({
     name: "hidden",
     initialState:{
         hidden: false,
-        time: 2,
+        time: 999,
         isHidden: true
     },
     reducers:{

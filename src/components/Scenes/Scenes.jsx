@@ -12,7 +12,7 @@ function Scenes(props) {
 
     return (
         <>
-        {!viewDetail && <div className={`${props.scenesView ? 'opacity-1' : 'opacity-0 z-0'}  backdrop-filter w-[20%] h-[80%] right-[5%] top-[10%] absolute z-10 scroll-div noise transition-opacity transition_opacity`}>
+        {!viewDetail && <div className={`${props.scenesView ? 'opacity-1' : 'opacity-0 translate-x-[200%] z-0'}  backdrop-filter w-[20%] h-[80%] right-[6%] top-[10%] absolute z-10 scroll-div noise transition-opacity transition_opacity`}>
             <div className='flex justify-between items-center pt-4 px-4 font-bold text-[#ddd]'>
                 <h1 className='font-bold text-[#ddd] text-[20px] '>Scenes</h1>
                 <i onClick={props.onCloseScenes} className="p-2 cursor-pointer fa-light fa-xmark"></i>

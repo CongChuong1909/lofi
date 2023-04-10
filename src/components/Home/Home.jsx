@@ -27,12 +27,12 @@ function Home(props) {
           hidden: false,
         }
         dispatch(changeHidden(updateHidden))
-      }, 5000);
+      }, isHidden ? time*1000 : 99999 );
     };
   
     let timeout = setTimeout(() => {
       handleMouseMove();
-    }, 5000);
+    }, isHidden ? time*1000 : 99999);
   
     document.addEventListener("mousemove", handleMouseMove);
   
@@ -40,7 +40,7 @@ function Home(props) {
       document.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [hiddenMode]);
   
 
     const ScenesChanged = () =>{

@@ -12,8 +12,6 @@ function Header(props) {
     const [dayNightBg, setDayNightBg] = useState(dayNight)
     const hiddenMode = useSelector((state) => state.hidden);
     const {hidden, time, isHidden} = hiddenMode;
-
-    console.log(hiddenMode);
     const handleChangeMode = ()=>{
 
         if(dayNight === 'day')
@@ -43,15 +41,22 @@ function Header(props) {
         unmountOnExit
       >
         <div className={` flex justify-between items-center bg-[rgba(92,92,92,0)] w-full fixed z-[2]  ${hidden ? 'fadeDown': 'fadeUp'}`}>
-                <img className='w-40 mx-10 h-auto' src="/image/logo.gif" alt="" />
-                <div className='flex justify-between items-center w-[30%] h-[80px] px-10'>
-                    <Toggle onToggleModeBg = {handleChangeMode}/>
+                <img className='hidden lg:block lg:w-40 mx-2 lg:mx-10 h-auto' src="/image/logo.gif" alt="" />
+                <div className='flex justify-end items-center w-full lg:w-[80%] h-[80px] px-10'>
+                    <div className=' h-[80px] flex justify-between items-center px-2'>
+                        <Toggle onToggleModeBg = {handleChangeMode}/>
+                    </div>
+                    <div className=' h-[80px] flex justify-between items-center px-2'>
                     <PlayerOption/>
-                    <div className='bg-[rgba(1,1,1,0.7)] rounded-[10px]'>
-                        <i className="text-[#fff] cursor-pointer px-3 py-2 fa-regular fa-bars"></i>
+                    </div>
+                    <div className=' hidden h-[80px] lg:flex justify-between items-center px-2'>
+                        <div className='bg-[rgba(1,1,1,0.7)] rounded-[10px]'>
+                            <i className="text-[#fff] cursor-pointer px-3 py-2 fa-regular fa-bars"></i>
+                        </div>
                     </div>
                 </div>
         </div>
+        
         </CSSTransition>
     );
 }

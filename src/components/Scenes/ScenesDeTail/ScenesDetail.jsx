@@ -61,7 +61,7 @@ function ScenesDetail(props) {
     }
 
     return (
-        <div className={`${props.viewScenes ? 'scenes ': ''}  backdrop-filter w-[20%] h-[60%] right-[5%] top-[20%] absolute z-10 scroll-div noise`}>
+        <div className={`${props.viewScenes ? 'scenes ': ''}  backdrop-filter w-[20%] h-[60%] right-[6%] top-[20%] absolute z-10 scroll-div noise`}>
             <div onClick={()=>props.onCloseScenesDetail()} className='flex justify-start items-center text-[#ddd] w-[50%]  cursor-pointer p-4'>
                 <i  className="fa-solid fa-chevron-left mr-1"></i>
                 <h2 className='text-[18px]'>Switch Scenes</h2>
