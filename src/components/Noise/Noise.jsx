@@ -117,68 +117,68 @@ function Noise(props) {
 
    return ( 
     <>
-        <div className='flex justify-between w-full level-input mx-3 pb-3 px-8 '>
+        <div className='flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8 '>
             <audio preload='auto' ref={audioTrafficRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/city_traffic.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>City Traffic </h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>City Traffic </h1>
             <div className='track-full row'>
                 <div className='filler'></div>
                 <div className='track'></div>
             </div>
-            <input className=''  value={cityTraffic} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
+            <input className='w-[100px] lg:w-[130px]'  value={cityTraffic} type='range' onChange={handleCitiTrafficVolume} name='volume' step='0.1' min='0' max='1'  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioRainRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/rain_city.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>Key Board</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>Key Board</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={keyBoard} type="range" onChange = {handleKeyBoardVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={keyBoard} type="range" onChange = {handleKeyBoardVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioKeyBoardRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/keyboard.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'> City Rain</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'> City Rain</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={cityRain} type="range" onChange = {handleCityRainVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={cityRain} type="range" onChange = {handleCityRainVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioTalkRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/people_talk_inside.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>Talking</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>Talking</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={peopleTalk} type="range" onChange = {handlePeopleTalkVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={peopleTalk} type="range" onChange = {handlePeopleTalkVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioFireRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/fireplace.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>Fire</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>Fire</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={fire} type="range" onChange = {handleFireVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={fire} type="range" onChange = {handleFireVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioWaveRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/waves.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>Wave</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>Wave</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={wave} type="range" onChange = {handleWaveVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={wave} type="range" onChange = {handleWaveVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
-        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-8'>
+        <div className = 'flex justify-between w-full level-input mx-3 pb-3 px-2 lg:px-8'>
         <audio preload='auto' ref={audioWindRef}  autoPlay src='https://lofico.nyc3.cdn.digitaloceanspaces.com/effects/wind.mp3' loop type='audio/mp3'/>
-            <h1 className='text-[#bcbab8] pr-6'>Wind</h1>
+            <h1 className='text-[#bcbab8] text-[12px] lg:text-[16px] pr-2 lg:pr-6'>Wind</h1>
             <div className="track-full row">
                 <div className="filler"></div>
                 <div className="track" ></div>
             </div>
-            <input className='' value={wind} type="range" onChange = {handleWindVolume} name="volume" step="0.1" min="0" max="1"  />
+            <input className='w-[100px] lg:w-[130px]' value={wind} type="range" onChange = {handleWindVolume} name="volume" step="0.1" min="0" max="1"  />
         </div>
         
         

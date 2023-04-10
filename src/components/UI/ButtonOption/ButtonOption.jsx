@@ -97,8 +97,8 @@ function ButtonOption(props) {
     
     return (
         <div className="flex button-option flex-col justify-center items-center relative">
-            <div className="cursor-pointer button-option_border  w-8 h-8 border-[3px] flex items-center justify-center border-[#fff] rounded-full relative z-[3]">
-                <div onClick={handleClickEvent} onMouseOver={()=>setViewVolume(false)} className="button-option_avtive opacity-0 bg-[#fff] rounded-full w-[18px] h-[18px]"></div>
+            <div className="cursor-pointer button-option_border w-6 h-6  lg:w-8 lg:h-8 border-[3px] flex items-center justify-center border-[#fff] rounded-full relative z-[3]">
+                <div onClick={handleClickEvent} onMouseOver={()=>setViewVolume(false)} className="button-option_avtive opacity-0 bg-[#fff] rounded-full w-[14px] h-[14px] lg:w-[18px] lg:h-[18px]"></div>
             </div>
             <div className="button-option_tag z-[3] text-center opacity-0 invisible bg-[rgba(1,1,1,0.6)] top-4 relative rounded-md">
                 <p onClick={handleClickEvent} className="py-[2px] px-[8px] text-[#fff] font-semibold cursor-pointer">

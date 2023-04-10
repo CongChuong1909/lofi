@@ -12,9 +12,9 @@ function Scenes(props) {
 
     return (
         <>
-        {!viewDetail && <div className={`${props.scenesView ? 'opacity-1' : 'opacity-0 translate-x-[200%] z-0'}  backdrop-filter w-[20%] h-[80%] right-[6%] top-[10%] absolute z-10 scroll-div noise transition-opacity transition_opacity`}>
-            <div className='flex justify-between items-center pt-4 px-4 font-bold text-[#ddd]'>
-                <h1 className='font-bold text-[#ddd] text-[20px] '>Scenes</h1>
+        {!viewDetail && <div className={`${props.scenesView ? 'opacity-1' : 'opacity-0 translate-x-[200%] z-0'}  backdrop-filter w-[25%] lg:w-[20%] h-[70%] lg:h-[80%] right-[10%] lg:right-[6%] top-[20%] lg:top-[10%] absolute z-10 scroll-div noise transition-opacity transition_opacity`}>
+            <div className='flex justify-between items-center  lg:pt-4 px-4 font-bold text-[#ddd]'>
+                <h1 className='font-bold text-[#ddd] text-[13px] lg:text-[20px] '>Scenes</h1>
                 <i onClick={props.onCloseScenes} className="p-2 cursor-pointer fa-light fa-xmark"></i>
             </div>
                 { DataVideo.map((item, index)=>{

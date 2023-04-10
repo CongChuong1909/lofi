@@ -101,7 +101,7 @@ function PlayerOption(props) {
         <>
            <audio src={mp3PlayerSong} preload="auto"  type="audio/mpeg" ref ={audioElement} onEnded={handleForward}/>
             <div  onMouseLeave={()=> setViewVolume(false)}  className="relative">
-                <div  className="bg-[rgba(1,1,1,0.7)] flex rounded-[10px] relative">
+                <div  className="bg-[rgba(1,1,1,0.7)] mx-4 lg:mx-0 flex rounded-[10px] relative">
                     <i onClick={handleBack} className="text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-backward-fast"></i>
                     {!onPlay && <i onClick={handlePlayingMusic} className="text-[#fff] cursor-pointer px-3 py-2 w-[32px] fa-duotone fa-play"></i>}
                     {onPlay && <i onClick={handlePlayingMusic} className="text-[#fff] cursor-pointer px-3 py-2 w-[32px] fa-duotone fa-pause"></i>}
@@ -117,7 +117,7 @@ function PlayerOption(props) {
                 </div>
             </div>
 
-            <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px]">
+            <div className="bg-[rgba(1,1,1,0.7)] mr-4 lg:mr-0 rounded-[10px]">
                 <i onClick = {handleMuted} className={`text-[#fff] cursor-pointer px-3 py-2 fa-sharp fa-solid fa-volume-slash ${isMuted ?'border-2 border-[#f3a952] rounded-lg': ''}`}></i>
             </div>
             <div className="bg-[rgba(1,1,1,0.7)] rounded-[10px] "  onClick={handleToggleFullscreen}>

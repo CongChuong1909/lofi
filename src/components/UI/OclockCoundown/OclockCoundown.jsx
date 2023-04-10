@@ -57,13 +57,13 @@ function OclockCoundown(props) {
         }
 
     return (
-        <div className="flex items-center flex-col z-[999] h-84 w-full backdrop-filter">
+        <div className="flex items-center flex-col z-[999] h-52  w-44 lg:h-72 lg:w-full backdrop-filter">
             <div  className="flex justify-between w-full px-2 mt-2 cursor-grab">
-                <div className="cursor-pointer"><i className="fa-solid fa-gear p-2 text-[#fff]"></i><span className="text-[#fff]">Setting</span></div>
+                <div onClick={props.onViewSetting} className="cursor-pointer"><i className="fa-solid fa-gear text-[12px] lg:text-[16px] lg:p-2 text-[#fff]"></i><span className=" text-[12px] lg:text-[16px] text-[#fff] pl-2 lg:pl-0">Setting</span></div>
                 <div onMouseDown={props.onMouseDown} className="w-[40%]"></div>
-                <div className="cursor-pointer"><i className="fa-thin fa-xmark p-2 text-[#fff]"></i></div>
+                <div onClick={props.onCloseOclock} className="cursor-pointer"><i className="fa-thin fa-xmark p-2 text-[#fff]"></i></div>
             </div>
-            <div className="w-full flex flex-col items-center py-6 justify-center">
+            <div className="w-full flex flex-col items-center pb-2 lg:py-6 justify-center">
                 <div className="w-[60%]">
                 <CircularProgressbarWithChildren value={percentage}
                    styles={buildStyles({
@@ -85,8 +85,8 @@ function OclockCoundown(props) {
                 </div>
                 <div className="mt-3">
                     {isPaused ? 
-                    <div onClick={() => { setIsPaused(false); isPausedRef.current = false; }} className="bg-[rgba(0,0,0,0.7)] rounded-full w-11 h-11 flex items-center justify-center "><i  className="fa-thin fa-play  text-[#fff] "></i></div> : 
-                    <div onClick={() => { setIsPaused(true); isPausedRef.current = true; }} className="bg-[rgba(0,0,0,0.7)] rounded-full w-11 h-11 flex items-center justify-center "><i  className="fa-thin fa-pause  text-[#fff] "></i></div>}
+                    <div onClick={() => { setIsPaused(false); isPausedRef.current = false; }} className="bg-[rgba(0,0,0,0.7)] rounded-full w-8 lg:w-11 h-8 lg:h-11 flex items-center justify-center "><i  className="fa-thin fa-play  text-[12px] lg:text-[16px] text-[#fff] "></i></div> : 
+                    <div onClick={() => { setIsPaused(true); isPausedRef.current = true; }} className="bg-[rgba(0,0,0,0.7)] rounded-full w-8 lg:w-11 h-8 lg:h-11 flex items-center justify-center "><i  className="fa-thin fa-pause text-[12px] lg:text-[16px]  text-[#fff] "></i></div>}
                 
                 
                 </div>

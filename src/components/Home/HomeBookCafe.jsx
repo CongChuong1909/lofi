@@ -63,7 +63,7 @@ function HomeBookCafe(props) {
         )
     }
     const [isDragging, setIsDragging] = useState(false);
-  const [draggingPosition, setDraggingPosition] = useState({ x: 900, y: 300 });
+  const [draggingPosition, setDraggingPosition] = useState({ x: 300, y: 100 });
   const [draggedElement, setDraggedElement] = useState(null);
 
   const handleMouseDown = (e) => {
@@ -120,10 +120,10 @@ function HomeBookCafe(props) {
             <Scenes scenesView = {scenesView} onCloseScenes = {()=>setScenesView(false)}/>
             <TimerHidden  settingView = {settingView} onCloseSetting = {()=>setSettingView(false)}/>
             {viewOclock && <div className='absolute w-64 h-[8%] top-[20%] left-[60%] z-[50]  noise transition_opacity' style={style}>
-                <OclockCoundown  style={style} onMouseDown = {handleMouseDown}/>
+                <OclockCoundown onViewSetting = {()=> setSettingView(true)} onCloseOclock = {()=> setViewOclock(false)} style={style} onMouseDown = {handleMouseDown}/>
             </div>}
             
-            <TimerSetting timerView = {timerView} onCloseTimer = {()=>setTimerView(false)}/>
+            <TimerSetting handleOclockView = {()=>setViewOclock(true)} timerView = {timerView} onCloseTimer = {()=>setTimerView(false)}/>
            {mode.scence === 'outside' && 
             <>
                  <div className='relative w-[120px] h-[120px] bottom-[-44%] right-[-53%]'>
@@ -134,7 +134,7 @@ function HomeBookCafe(props) {
                     <ButtonOption tagName = "City Rain" tag = 'City Rain' volume = {true}/>  
                 </div>
 
-                <div className='relative  w-[120px] h-[120px] bottom-[-41%] left-[30%]'>
+                <div className='relative  w-[120px] h-[120px] bottom-[-8%] lg:bottom-[-41%] left-[30%]'>
                     <ButtonOption tagName = "City Traffic" tag = 'City Traffic' volume = {true}/>  
                 </div>
             </>
@@ -148,7 +148,7 @@ function HomeBookCafe(props) {
                             <ButtonOption tagName = "City Rain" tag = 'City Rain' volume = {true}/>  
                         </div>
 
-                        <div className='relative  w-[120px] h-[120px] bottom-[-34%] left-[80%]'>
+                        <div className='relative  w-[120px] h-[120px] bottom-[-16%] lg:bottom-[-34%] left-[80%]'>
                             <ButtonOption tagName = "KeyBoard" tag = 'KeyBoard' volume = {true}/>  
                         </div>
                 </>}
