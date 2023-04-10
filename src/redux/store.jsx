@@ -4,6 +4,8 @@ import MusicSlices from "./Slices/MusicSlices";
 import NoiseSlices from "./Slices/NoiseSlices";
 import ScenesSlices from "./Slices/ScenesSlices";
 import HiddenSlices from "./Slices/HiddenSlices";
+import TimerSlices from "./Slices/TimerSlices";
+import PositionDragSlices from "./Slices/PositionDragSlices";
 const store = configureStore({
     reducer:{
         mode: modeSlices,
@@ -11,6 +13,8 @@ const store = configureStore({
         noise: NoiseSlices,
         scenes: ScenesSlices,
         hidden: HiddenSlices,
+        timer: TimerSlices,
+        positionDrag: PositionDragSlices,
     }
 })
 export default store;

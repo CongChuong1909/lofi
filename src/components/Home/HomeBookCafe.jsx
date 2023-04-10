@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ButtonOption from '../UI/ButtonOption/ButtonOption';
 import SidebarMixed from '../SideBarMixed/SidebarMixed';
 import Mixed from '../Mixed/Mixed';
@@ -9,14 +9,17 @@ import { CSSTransition } from 'react-transition-group';
 import TimerHidden from '../TimerHidden/TimerHidden';
 import OclockCoundown from '../UI/OclockCoundown/OclockCoundown';
 import TimerSetting from '../TimerSetting/TimerSetting';
+import { changePosition } from '../../redux/Slices/PositionDragSlices';
 function HomeBookCafe(props) {
     const mode = useSelector((state) => state.mode);
     const scenes = useSelector((state) => state.scenes);
     const [mixedView, setMixedView] = useState(false);
     const [scenesView, setScenesView] = useState(false);
     const [settingView, setSettingView] = useState(false);
+    const dispatch = useDispatch();
     const [timerView, setTimerView] = useState(false);
     const hiddenMode = useSelector((state) => state.hidden);
+    const [viewOclock, setViewOclock] = useState(false);
     const {hidden, time, isHidden} = hiddenMode;
     
     const activeMode = `status-${mode.scence}-${mode.dayNight}-${mode.weather}`;
@@ -59,10 +62,51 @@ function HomeBookCafe(props) {
             </>
         )
     }
+    const [isDragging, setIsDragging] = useState(false);
+  const [draggingPosition, setDraggingPosition] = useState({ x: 900, y: 300 });
+  const [draggedElement, setDraggedElement] = useState(null);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setDraggedElement(e.target);
+    e.stopPropagation();
+    setDraggingPosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.stopPropagation();
+    const dx = e.clientX - draggingPosition.x;
+    const dy = e.clientY - draggingPosition.y;
+
+    setDraggingPosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
+
+    draggedElement.style.left = `${draggedElement.offsetLeft + dx}px`;
+    draggedElement.style.top = `${draggedElement.offsetTop + dy}px`;
+  };
+
+  const handleMouseUp = () => {
+    // e.stopPropagation();
+    setIsDragging(false);
+    setDraggedElement(null);
+  };
+
+      const style = {
+        position: "absolute",
+        top: draggingPosition.y,
+        left: draggingPosition.x,
+        transform: "translate(-50%, -50%)",
+      };
     
 
     return (
-        <div className='w-full h-[100vh] fixed bg-[#000]' >
+        <div  onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} className='w-full h-[100vh] fixed bg-[#000]'    >
             {video()}
             <CSSTransition
                 in={hidden}
@@ -75,7 +119,10 @@ function HomeBookCafe(props) {
             <Mixed mixedView = {mixedView} classes = {classes} onCloseMixed = {()=>setMixedView(false)}/>
             <Scenes scenesView = {scenesView} onCloseScenes = {()=>setScenesView(false)}/>
             <TimerHidden  settingView = {settingView} onCloseSetting = {()=>setSettingView(false)}/>
-            <OclockCoundown/>
+            {viewOclock && <div className='absolute w-64 h-[8%] top-[20%] left-[60%] z-[50]  noise transition_opacity' style={style}>
+                <OclockCoundown  style={style} onMouseDown = {handleMouseDown}/>
+            </div>}
+            
             <TimerSetting timerView = {timerView} onCloseTimer = {()=>setTimerView(false)}/>
            {mode.scence === 'outside' && 
             <>
